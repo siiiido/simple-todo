@@ -1,5 +1,6 @@
 export interface Todo {
 	id: string,
-	todoText: string
+	todoText: string,
+	checkbox: boolean
 };
  
