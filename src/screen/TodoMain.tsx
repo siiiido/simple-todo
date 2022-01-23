@@ -1,10 +1,13 @@
 import React, {useState, ChangeEvent, KeyboardEvent, MouseEvent} from 'react';
+import styled from 'styled-components';
 import {NavLink} from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux'
 import { RootState } from '../App';
 import { Dispatch } from 'redux';
 import { nanoid } from 'nanoid';
 import { Todo } from '../type';
+import { Btn } from '../components/Btn';
+import { Container } from '../components/Container';
 
 
 const TodoMain = () => {
@@ -41,28 +44,73 @@ const TodoMain = () => {
   }
 
   return (
-    <div>
-      <h1>Simple Todo</h1>
-      <input type='text' value={textField} onChange={handleText} onKeyPress={handleTodoEnter} placeholder='write what you want to do' />
-      <button onClick={handleTodoClick}>+버튼</button>
-      <div>
+    <Layout>
+      <Header>Simple Todo</Header>
+      <TextField type='text' value={textField} onChange={handleText} onKeyPress={handleTodoEnter} placeholder='write what you want to do' />
+      <PlusBtn onClick={handleTodoClick}>+버튼</PlusBtn>
+      <Container>
         {getTodo.map((todo) => (
-          <div key={todo.id}>
-            <input type='checkbox' onChange={handleCheck(todo)} checked={todo.checkbox}  /> { todo.todoText }
+          <TodoContainer key={todo.id}>
+            <CheckBox type='checkbox' onChange={handleCheck(todo)} checked={todo.checkbox}/> <Todos>{ todo.todoText }</Todos> 
             {' '}  
             <button onClick={handleTodoDelete(todo)}>삭제</button>
-          </div>
+          </TodoContainer>
         ))}
-      </div>
-      <div>
-        <button onClick={handleTodoDeleteAll}  >체크 표시 모두 삭제</button>
-      </div>
+      </Container>
+      <Btn onClick={handleTodoDeleteAll}  >체크 표시 모두 삭제</Btn>
       <NavLink to='/focus'>
-        <button>Focus 페이지로 이동</button>
+        <Btn>Focus 페이지로 이동</Btn>
       </NavLink>
         
-    </div>
+    </Layout>
   )
 };
 
 export default TodoMain;
+
+
+const Layout = styled.div`
+  width: 362px;
+  height: 600px;
+  /* background-color: #F4F4F4; */
+  background-color: white;
+  border: 1px solid black;
+`;
+
+const Header = styled.h1`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
+const TextField = styled.input`
+  width: 283px;
+  height: 40px;
+  margin-left: 14px;
+  margin-top: 10px;
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 17.58px;
+`;
+
+const PlusBtn = styled.button`
+  width: 40px;
+  height: 40px;
+`;
+
+const TodoContainer = styled.div`
+  padding-left: 23px;
+`;
+
+const Todos = styled.span`
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 15.23px;
+`;
+
+const CheckBox = styled.input`
+  width: 13px;
+  height: 13px;
+  transform: scale(1.5);
+  cursor: pointer;
+`;
