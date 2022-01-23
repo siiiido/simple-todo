@@ -1,26 +1,28 @@
 import React, {useState, ChangeEvent, KeyboardEvent} from 'react';
 import {NavLink} from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux'
+import { Todo } from '../type';
+import { RootState } from '../App';
+import { Dispatch } from 'redux';
 
-type Todo = {
-  todoText: string
-}
 
 const TodoMain = () => {
-  const [todoList, setTodoList] = useState<Todo[]>([]);
+  const getTodo = useSelector((state: RootState) => state);
+  const dispatch: Dispatch = useDispatch();
   const [textField, setTextField] = useState('')
 
   const handleText = (e: ChangeEvent<HTMLInputElement> ) => setTextField(e.target.value);
 
   const handleTodoEnter = (e: KeyboardEvent<HTMLInputElement>) => {
     if(textField !== '' && e.key === 'Enter'){
-      setTodoList((prevTodos) => [...prevTodos, { todoText: textField }]);
+      dispatch({type: 'add', payload: { id: 'abt', todoText: textField }});
       setTextField('');
     }
   }
 
   const handleTodoClick = () => {
     if(textField !== '') {
-      setTodoList((prevTodos) => [...prevTodos, { todoText: textField }]);
+      dispatch({type: 'add', payload: { id: 'abt', todoText: textField }});
       setTextField('');
     }
   }
@@ -31,9 +33,9 @@ const TodoMain = () => {
       <input type='text' value={textField} onChange={handleText} onKeyPress={handleTodoEnter} placeholder='write what you want to do' />
       <button onClick={handleTodoClick}>+버튼</button>
       <div>
-      {todoList.map((todo, idx) => (
+      {getTodo.map((todo, idx) => (
         <div key={idx}>
-          <input type='checkbox'/> { todo.todoText}
+          <input type='checkbox'/> { todo.todoText }
         </div>
       ))}
       </div>
