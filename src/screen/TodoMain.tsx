@@ -1,4 +1,5 @@
 import React, {useState, ChangeEvent, KeyboardEvent} from 'react';
+import {NavLink} from 'react-router-dom';
 
 type Todo = {
   todoText: string
@@ -39,9 +40,9 @@ const TodoMain = () => {
       <div>
         <button>체크 표시 모두 삭제</button>
       </div>
-      <div>
+      <NavLink to='/focus'>
         <button>Focus 페이지로 이동</button>
-      </div>
+      </NavLink>
         
     </div>
   )

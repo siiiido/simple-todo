@@ -1,4 +1,6 @@
 import React from 'react';
+import {NavLink} from 'react-router-dom';
+
 
 const FocusMain = () => {
   return(
@@ -12,9 +14,9 @@ const FocusMain = () => {
       <div>
         <button>완료!!</button>
       </div>
-      <div>
+      <NavLink to='/'>
         <button>todo페이지로 이동</button>
-      </div>
+      </NavLink>
     </div>
   ) 
   
