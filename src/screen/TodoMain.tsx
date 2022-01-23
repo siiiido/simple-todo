@@ -1,9 +1,9 @@
 import React, {useState, ChangeEvent, KeyboardEvent} from 'react';
 import {NavLink} from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux'
-import { Todo } from '../type';
 import { RootState } from '../App';
 import { Dispatch } from 'redux';
+import { nanoid } from 'nanoid';
 
 
 const TodoMain = () => {
@@ -15,14 +15,14 @@ const TodoMain = () => {
 
   const handleTodoEnter = (e: KeyboardEvent<HTMLInputElement>) => {
     if(textField !== '' && e.key === 'Enter'){
-      dispatch({type: 'add', payload: { id: 'abt', todoText: textField }});
+      dispatch({type: 'add', payload: { id: nanoid(), todoText: textField }});
       setTextField('');
     }
   }
 
   const handleTodoClick = () => {
     if(textField !== '') {
-      dispatch({type: 'add', payload: { id: 'abt', todoText: textField }});
+      dispatch({type: 'add', payload: { id: nanoid(), todoText: textField }});
       setTextField('');
     }
   }
@@ -33,8 +33,8 @@ const TodoMain = () => {
       <input type='text' value={textField} onChange={handleText} onKeyPress={handleTodoEnter} placeholder='write what you want to do' />
       <button onClick={handleTodoClick}>+버튼</button>
       <div>
-      {getTodo.map((todo, idx) => (
-        <div key={idx}>
+      {getTodo.map((todo) => (
+        <div key={todo.id}>
           <input type='checkbox'/> { todo.todoText }
         </div>
       ))}
