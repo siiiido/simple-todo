@@ -36,6 +36,13 @@ const TodoMain = () => {
         </div>
       ))}
       </div>
+      <div>
+        <button>체크 표시 모두 삭제</button>
+      </div>
+      <div>
+        <button>Focus 페이지로 이동</button>
+      </div>
+        
     </div>
   )
 };
