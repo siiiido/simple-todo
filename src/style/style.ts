@@ -1,6 +1,9 @@
 import { createGlobalStyle } from "styled-components";
+import { reset } from "styled-reset";
 
 export const GlobalStyle = createGlobalStyle`
+  ${reset}
+  
   * {
     box-sizing: border-box;
   }
@@ -8,7 +11,8 @@ export const GlobalStyle = createGlobalStyle`
     margin: 0;
     width: 100vw;
     height: 100vh;
-    background-color: #FAF8F2;
+    /* background-color: #FAF8F2; */
+    background-color: #B4B8BD;
     display: flex;
     justify-content: center;
     align-items: center;
