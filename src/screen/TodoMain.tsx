@@ -8,7 +8,8 @@ import { nanoid } from 'nanoid';
 import { Todo } from '../type';
 import { Btn } from '../components/Btn';
 import { Container } from '../components/Container';
-
+import { AiFillDelete } from 'react-icons/ai';
+import { AiOutlinePlusSquare } from 'react-icons/ai';
 
 const TodoMain = () => {
   const getTodo = useSelector((state: RootState) => state);
@@ -47,13 +48,13 @@ const TodoMain = () => {
     <Layout>
       <Header>Simple Todo</Header>
       <TextField type='text' value={textField} onChange={handleText} onKeyPress={handleTodoEnter} placeholder='write what you want to do' />
-      <PlusBtn onClick={handleTodoClick}>+버튼</PlusBtn>
+      <PlusBtn onClick={handleTodoClick}><AiOutlinePlusSquare/></PlusBtn>
       <Container>
         {getTodo.map((todo) => (
           <TodoContainer key={todo.id}>
             <CheckBox type='checkbox' onChange={handleCheck(todo)} checked={todo.checkbox}/> <Todos>{ todo.todoText }</Todos> 
             {' '}  
-            <button onClick={handleTodoDelete(todo)}>삭제</button>
+            <DeleteBtn onClick={handleTodoDelete(todo)}><AiFillDelete/></DeleteBtn>
           </TodoContainer>
         ))}
       </Container>
@@ -72,7 +73,6 @@ export default TodoMain;
 const Layout = styled.div`
   width: 362px;
   height: 600px;
-  /* background-color: #F4F4F4; */
   background-color: white;
   border: 1px solid black;
 `;
@@ -91,21 +91,47 @@ const TextField = styled.input`
   font-size: 15px;
   font-weight: 400;
   line-height: 17.58px;
-`;
+  `;
 
 const PlusBtn = styled.button`
   width: 40px;
   height: 40px;
-`;
+  border: none;
+  outline: none;
+  appearance: none;
+  background-color: white;
+  font-size: 40px;
+  transform: translate(5%,40%);
+  opacity: 50%;
+  cursor: pointer;
+  &:hover{
+    opacity: 100%;
+  }
+  `;
 
 const TodoContainer = styled.div`
   padding-left: 23px;
+  `;
+
+const DeleteBtn = styled.button`
+  cursor: pointer;
+  border: none;
+  outline: none;
+  appearance: none;
+  background-color: white;
+  font-size: 17px;
+  opacity: 50%;
+  &:hover{
+    opacity: 100%;
+  }
 `;
 
 const Todos = styled.span`
-  font-size: 13px;
-  font-weight: 400;
+  font-weight: 13px;
   line-height: 15.23px;
+  width: 250px;
+  display: inline-block;
+  font-weight: 400;
 `;
 
 const CheckBox = styled.input`
