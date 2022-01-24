@@ -5,9 +5,10 @@ import { RootState } from '../App';
 import { Dispatch } from 'redux';
 import { Todo } from '../type';
 import styled from 'styled-components';
-import { Btn } from '../components/style/Btn';
-import { Container } from '../components/style/Container';
-import PageTransition from '../components/style/PageTransition';
+import { Btn, BtnContainer } from '../style/Btn';
+import { Container } from '../style/Container';
+import PageTransition from '../style/PageTransition';
+import { Header } from '../style/Header';
 
 
 const FocusMain = () => {
@@ -22,26 +23,27 @@ const FocusMain = () => {
     <PageTransition>
       <FocusLayout>
         <Header>Focus Mode</Header>
-        <Quote>집중 집중 집중!!</Quote>
         <Container>
           {
             getTodo[0] ?
             (
               <>
-                <Focus> {getTodo[0].todoText}    (최대 글자 수 몇칸으로??)</Focus>
-                <div>
-                  <Btn onClick={handleFocusTodo(getTodo[0])}>완료!!</Btn>
-                </div>
+                {/* <Focus> {getTodo[0].todoText}    (최대 글자 수 몇칸으로??)</Focus> */}
+                <Focus> {getTodo[0].todoText}</Focus>
               </>
             ) :
             (
-              <h3>열공!!</h3>
+              <Focus>Let's get it!</Focus>
             )
           }
         </Container>
-        <NavLink to='/'>
-          <Btn>todo페이지로 이동</Btn>
-        </NavLink>
+        <BtnContainer margtinTop="98px">
+          <Btn onClick={handleFocusTodo(getTodo[0])}>Complete</Btn>
+          <NavLink to='/'>
+            <Btn background="#6EA4E4">Todo Mode</Btn>
+          </NavLink>
+          <Btn color="#C1C1C1" background="#2E2E2E" >Dark Mode</Btn>
+        </BtnContainer>
       </FocusLayout>
     </PageTransition>
   ) 
@@ -53,21 +55,19 @@ export default FocusMain;
 const FocusLayout = styled.div`
   width: 362px;
   height: 600px;
-  border: 1px solid black;
-`;
-const Header = styled.h1`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-`;
+  background-color: white;
+  border-radius: 20px;
 
-const Quote = styled.h4`
-  text-align: center;
 `;
 
 const Focus = styled.div`
-  padding-top: 100px;
-  margin-bottom: 50px;
+  height: 100%;
   text-align: center;
   font-weight: bold;
+  font-size: 30px;
+  font-weight: 400;
+  line-height: 35.16px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;

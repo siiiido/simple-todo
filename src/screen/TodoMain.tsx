@@ -1,16 +1,18 @@
 import React, {useState, ChangeEvent, KeyboardEvent, MouseEvent} from 'react';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import {NavLink} from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux'
 import { RootState } from '../App';
 import { Dispatch } from 'redux';
 import { nanoid } from 'nanoid';
 import { Todo } from '../type';
-import { Btn } from '../components/style/Btn';
-import { Container } from '../components/style/Container';
+import { Btn, BtnContainer } from '../style/Btn';
+import { Container } from '../style/Container';
 import { AiFillDelete } from 'react-icons/ai';
 import { AiOutlinePlusSquare } from 'react-icons/ai';
-import PageTransition from '../components/style/PageTransition';
+import PageTransition from '../style/PageTransition';
+import { Header } from '../style/Header';
+import { Checked } from '../type';
 
 const TodoMain = () => {
   const getTodo = useSelector((state: RootState) => state);
@@ -54,16 +56,19 @@ const TodoMain = () => {
         <Container>
           {getTodo.map((todo) => (
             <TodoContainer key={todo.id}>
-              <CheckBox type='checkbox' onChange={handleCheck(todo)} checked={todo.checkbox}/> <Todos>{ todo.todoText }</Todos> 
+              <CheckBox type='checkbox' onChange={handleCheck(todo)} checked={todo.checkbox}/> <Todos checked={todo.checkbox}>{ todo.todoText }</Todos> 
               {' '}  
               <DeleteBtn onClick={handleTodoDelete(todo)}><AiFillDelete/></DeleteBtn>
             </TodoContainer>
           ))}
         </Container>
-        <Btn onClick={handleTodoDeleteAll}  >체크 표시 모두 삭제</Btn>
-        <NavLink to='/focus'>
-          <Btn>Focus 페이지로 이동</Btn>
-        </NavLink>
+        <BtnContainer margtinTop="21px">
+          <Btn onClick={handleTodoDeleteAll}>Delete Checked</Btn>
+          <NavLink to='/focus'>
+            <Btn background="#6EA4E4">Focus Mode</Btn>
+          </NavLink>
+          <Btn color="#C1C1C1" background="#2E2E2E">Dark Mode</Btn>
+        </BtnContainer>
           
       </Layout>
     </PageTransition>
@@ -77,13 +82,7 @@ const Layout = styled.div`
   width: 362px;
   height: 600px;
   background-color: white;
-  border: 1px solid black;
-`;
-
-const Header = styled.h1`
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  border-radius: 20px;
 `;
 
 const TextField = styled.input`
@@ -94,6 +93,9 @@ const TextField = styled.input`
   font-size: 15px;
   font-weight: 400;
   line-height: 17.58px;
+  border: none;
+  background-color: #F9F7F1;
+  padding-left: 7px;
   `;
 
 const PlusBtn = styled.button`
@@ -110,7 +112,7 @@ const PlusBtn = styled.button`
   &:hover{
     opacity: 100%;
   }
-  `;
+`;
 
 const TodoContainer = styled.div`
   padding-left: 23px;
@@ -129,12 +131,18 @@ const DeleteBtn = styled.button`
   }
 `;
 
-const Todos = styled.span`
+const Todos = styled.span<Checked>`
   font-weight: 13px;
   line-height: 15.23px;
   width: 250px;
   display: inline-block;
   font-weight: 400;
+  margin-left: 5px;
+
+  ${(props) => props.checked && css`
+    opacity: 50%;
+    text-decoration-line: line-through;
+  `}
 `;
 
 const CheckBox = styled.input`
@@ -142,4 +150,12 @@ const CheckBox = styled.input`
   height: 13px;
   transform: scale(1.5);
   cursor: pointer;
+  opacity: 50%;
+
+  &:hover{
+    opacity: 100%;
+  }
+  &:checked{
+    opacity: 100%;
+  }
 `;
