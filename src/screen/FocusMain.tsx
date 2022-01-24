@@ -5,9 +5,9 @@ import { RootState } from '../App';
 import { Dispatch } from 'redux';
 import { Todo } from '../type';
 import styled from 'styled-components';
-import { Btn } from '../components/Btn';
-import { Container } from '../components/Container';
-
+import { Btn } from '../components/style/Btn';
+import { Container } from '../components/style/Container';
+import PageTransition from '../components/style/PageTransition';
 
 
 const FocusMain = () => {
@@ -19,29 +19,31 @@ const FocusMain = () => {
   }
 
   return(
-    <FocusLayout>
-      <Header>Focus Mode</Header>
-      <Quote>집중 집중 집중!!</Quote>
-      <Container>
-        {
-          getTodo[0] ?
-          (
-            <>
-              <Focus> {getTodo[0].todoText}    (최대 글자 수 몇칸으로??)</Focus>
-              <div>
-                <Btn onClick={handleFocusTodo(getTodo[0])}>완료!!</Btn>
-              </div>
-            </>
-          ) :
-          (
-            <h3>열공!!</h3>
-          )
-        }
-      </Container>
-      <NavLink to='/'>
-        <Btn>todo페이지로 이동</Btn>
-      </NavLink>
-    </FocusLayout>
+    <PageTransition>
+      <FocusLayout>
+        <Header>Focus Mode</Header>
+        <Quote>집중 집중 집중!!</Quote>
+        <Container>
+          {
+            getTodo[0] ?
+            (
+              <>
+                <Focus> {getTodo[0].todoText}    (최대 글자 수 몇칸으로??)</Focus>
+                <div>
+                  <Btn onClick={handleFocusTodo(getTodo[0])}>완료!!</Btn>
+                </div>
+              </>
+            ) :
+            (
+              <h3>열공!!</h3>
+            )
+          }
+        </Container>
+        <NavLink to='/'>
+          <Btn>todo페이지로 이동</Btn>
+        </NavLink>
+      </FocusLayout>
+    </PageTransition>
   ) 
   
 };

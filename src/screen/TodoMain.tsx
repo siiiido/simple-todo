@@ -6,10 +6,11 @@ import { RootState } from '../App';
 import { Dispatch } from 'redux';
 import { nanoid } from 'nanoid';
 import { Todo } from '../type';
-import { Btn } from '../components/Btn';
-import { Container } from '../components/Container';
+import { Btn } from '../components/style/Btn';
+import { Container } from '../components/style/Container';
 import { AiFillDelete } from 'react-icons/ai';
 import { AiOutlinePlusSquare } from 'react-icons/ai';
+import PageTransition from '../components/style/PageTransition';
 
 const TodoMain = () => {
   const getTodo = useSelector((state: RootState) => state);
@@ -45,25 +46,27 @@ const TodoMain = () => {
   }
 
   return (
-    <Layout>
-      <Header>Simple Todo</Header>
-      <TextField type='text' value={textField} onChange={handleText} onKeyPress={handleTodoEnter} placeholder='write what you want to do' />
-      <PlusBtn onClick={handleTodoClick}><AiOutlinePlusSquare/></PlusBtn>
-      <Container>
-        {getTodo.map((todo) => (
-          <TodoContainer key={todo.id}>
-            <CheckBox type='checkbox' onChange={handleCheck(todo)} checked={todo.checkbox}/> <Todos>{ todo.todoText }</Todos> 
-            {' '}  
-            <DeleteBtn onClick={handleTodoDelete(todo)}><AiFillDelete/></DeleteBtn>
-          </TodoContainer>
-        ))}
-      </Container>
-      <Btn onClick={handleTodoDeleteAll}  >체크 표시 모두 삭제</Btn>
-      <NavLink to='/focus'>
-        <Btn>Focus 페이지로 이동</Btn>
-      </NavLink>
-        
-    </Layout>
+    <PageTransition>
+      <Layout>
+        <Header>Simple Todo</Header>
+        <TextField type='text' value={textField} onChange={handleText} onKeyPress={handleTodoEnter} placeholder='write what you want to do' />
+        <PlusBtn onClick={handleTodoClick}><AiOutlinePlusSquare/></PlusBtn>
+        <Container>
+          {getTodo.map((todo) => (
+            <TodoContainer key={todo.id}>
+              <CheckBox type='checkbox' onChange={handleCheck(todo)} checked={todo.checkbox}/> <Todos>{ todo.todoText }</Todos> 
+              {' '}  
+              <DeleteBtn onClick={handleTodoDelete(todo)}><AiFillDelete/></DeleteBtn>
+            </TodoContainer>
+          ))}
+        </Container>
+        <Btn onClick={handleTodoDeleteAll}  >체크 표시 모두 삭제</Btn>
+        <NavLink to='/focus'>
+          <Btn>Focus 페이지로 이동</Btn>
+        </NavLink>
+          
+      </Layout>
+    </PageTransition>
   )
 };
 
