@@ -33,7 +33,6 @@ const FocusMain = () => {
         <Container>
           {getTodo[0] ? (
             <>
-              {/* <Focus> {getTodo[0].todoText}    (최대 글자 수 몇칸으로??)</Focus> */}
               <Focus> {getTodo[0].todoText}</Focus>
             </>
           ) : (
@@ -42,7 +41,7 @@ const FocusMain = () => {
         </Container>
         <BtnContainer margtinTop="98px">
           <Btn onClick={handleFocusTodo(getTodo[0])}>Complete</Btn>
-          <NavLink to="/">
+          <NavLink style={{ textDecoration: 'none' }} to="/">
             <Btn background="#6EA4E4">Todo Mode</Btn>
           </NavLink>
         </BtnContainer>

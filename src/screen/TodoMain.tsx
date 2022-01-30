@@ -100,7 +100,7 @@ const TodoMain = () => {
         </Container>
         <BtnContainer margtinTop="21px">
           <Btn onClick={handleTodoDeleteAll}>Delete Checked</Btn>
-          <NavLink to="/focus">
+          <NavLink style={{ textDecoration: 'none' }} to="/focus">
             <Btn background="#6EA4E4">Focus Mode</Btn>
           </NavLink>
         </BtnContainer>

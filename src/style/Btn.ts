@@ -9,16 +9,20 @@ export const BtnContainer = styled.div<ButtonnContainer>`
 `;
 
 export const Btn = styled.button<Button>`
+  all: unset;
   width: 100px;
   height: 35px;
-
   border: none;
   cursor: pointer;
   border-radius: 5px;
-
-  font-size: 13px;
-  font-weight: 400;
+  font-size: 15px;
+  font-weight: 600;
   line-height: 15.23px;
+  -webkit-text-fill-color: black;
+  background-color: #E1E1E1;
+  text-align: center;
+  padding: 2px;
+  text-decoration: none;
 
   &:hover {
     background-color: ${(props) => props.background || "#E1E1E1"};
