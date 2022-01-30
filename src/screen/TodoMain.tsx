@@ -132,6 +132,7 @@ const TextField = styled.input`
 `;
 
 const PlusBtn = styled.button`
+  all: unset;
   width: 40px;
   height: 40px;
   border: none;
@@ -142,6 +143,7 @@ const PlusBtn = styled.button`
   font-size: 40px;
   transform: translate(5%, 40%);
   opacity: 50%;
+  margin-left: 10px;
   cursor: pointer;
   &:hover {
     opacity: 100%;
