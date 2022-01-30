@@ -2,7 +2,7 @@ import React from "react";
 import styled, { ThemeProvider } from "styled-components";
 import FocusMain from "./screen/FocusMain";
 import TodoMain from "./screen/TodoMain";
-import { BrowserRouter, Route, Switch } from "react-router-dom";
+import { BrowserRouter, HashRouter, Route, Switch } from "react-router-dom";
 import { Provider } from "react-redux";
 import { createStore } from "redux";
 import { reducer } from "./redux/index";
@@ -16,12 +16,12 @@ function App() {
     <>
       <GlobalStyle />
       <Provider store={store}>
-        <BrowserRouter>
+        <HashRouter>
           <Switch>
-          <Route exact path={process.env.PUBLIC_URL + '/'} component={TodoMain} />
-          <Route exact path={process.env.PUBLIC_URL + '/focus'} component={FocusMain} />
+            <Route exact path='/' component={TodoMain} />
+            <Route path='/focus' component={FocusMain} />
           </Switch>
-        </BrowserRouter>
+        </HashRouter>
       </Provider>
     </>
   );
