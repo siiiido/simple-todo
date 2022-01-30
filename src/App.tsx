@@ -18,13 +18,8 @@ function App() {
       <Provider store={store}>
         <BrowserRouter>
           <Switch>
-            {/* <Route exact path="/"> */}
-            <Route exact path={process.env.PUBLIC_URL + '/'}>
-              <TodoMain />
-            </Route>
-            <Route path={process.env.PUBLIC_URL + '/focus'}>
-              <FocusMain />
-            </Route>
+          <Route exact path={process.env.PUBLIC_URL + '/'} component={TodoMain} />
+          <Route exact path={process.env.PUBLIC_URL + '/focus'} component={FocusMain} />
           </Switch>
         </BrowserRouter>
       </Provider>
