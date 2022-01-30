@@ -138,6 +138,7 @@ const PlusBtn = styled.button`
   outline: none;
   appearance: none;
   background-color: white;
+  -webkit-text-fill-color: black;
   font-size: 40px;
   transform: translate(5%, 40%);
   opacity: 50%;

@@ -23,5 +23,6 @@ export const Btn = styled.button<Button>`
   &:hover {
     background-color: ${(props) => props.background || "#E1E1E1"};
     color: ${(props) => props.color || "black"};
+    -webkit-text-fill-color:${(props) => props.color || "black"} ;
   }
 `;
