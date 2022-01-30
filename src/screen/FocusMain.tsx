@@ -45,9 +45,6 @@ const FocusMain = () => {
           <NavLink to="/">
             <Btn background="#6EA4E4">Todo Mode</Btn>
           </NavLink>
-          <Btn color="#C1C1C1" background="#2E2E2E">
-            Dark Mode
-          </Btn>
         </BtnContainer>
       </FocusLayout>
     </PageTransition>
