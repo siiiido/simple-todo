@@ -2,7 +2,7 @@ import React, { useState, ChangeEvent, KeyboardEvent, MouseEvent } from "react";
 import styled, { css } from "styled-components";
 import { NavLink } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { RootState } from "../App";
+import { RootState } from "..";
 import { Dispatch } from "redux";
 import { nanoid } from "nanoid";
 import { Todo } from "../type";
@@ -15,7 +15,8 @@ import { Header } from "../style/Header";
 import { Checked } from "styled-components";
 
 const TodoMain = () => {
-  const getTodo = useSelector((state: RootState) => state);
+  const getTodo = useSelector((state: RootState) => state.reducer);
+  const getTheme = useSelector((state: RootState) => state.darkMode);
   const dispatch: Dispatch = useDispatch();
   const [textField, setTextField] = useState("");
 
@@ -69,6 +70,11 @@ const TodoMain = () => {
     });
   };
 
+  const handleTheme = () => {
+    let themeColor = getTheme === "light" ? "dark" : "light";
+    dispatch({ type: `${themeColor}` });
+  };
+
   return (
     <PageTransition>
       <Layout>
@@ -84,7 +90,7 @@ const TodoMain = () => {
           <AiOutlinePlusSquare />
         </PlusBtn>
         <Container>
-          {getTodo.map((todo) => (
+          {getTodo.map((todo: Todo) => (
             <TodoContainer key={todo.id}>
               <CheckBox
                 type="checkbox"
@@ -100,9 +106,18 @@ const TodoMain = () => {
         </Container>
         <BtnContainer margtinTop="21px">
           <Btn onClick={handleTodoDeleteAll}>Delete Checked</Btn>
-          <NavLink style={{ textDecoration: 'none' }} to="/focus">
+          <NavLink style={{ textDecoration: "none" }} to="/focus">
             <Btn background="#6EA4E4">Focus Mode</Btn>
           </NavLink>
+          {getTheme === "light" ? (
+            <Btn background="#6EA4E4" onClick={handleTheme}>
+              Dark Mode
+            </Btn>
+          ) : (
+            <Btn background="#6EA4E4" onClick={handleTheme}>
+              Light Mode
+            </Btn>
+          )}
         </BtnContainer>
       </Layout>
     </PageTransition>
@@ -114,7 +129,7 @@ export default TodoMain;
 const Layout = styled.div`
   width: 362px;
   height: 600px;
-  background-color: white;
+  background-color: ${(props) => props.theme.mainBackground};
   border-radius: 20px;
 `;
 

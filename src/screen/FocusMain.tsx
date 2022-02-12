@@ -1,7 +1,7 @@
 import React, { MouseEvent } from "react";
 import { NavLink } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { RootState } from "../App";
+import { RootState } from "..";
 import { Dispatch } from "redux";
 import { Todo } from "../type";
 import styled from "styled-components";
@@ -11,8 +11,14 @@ import PageTransition from "../style/PageTransition";
 import { Header } from "../style/Header";
 
 const FocusMain = () => {
-  const getTodo = useSelector((state: RootState) => state);
+  const getTodo = useSelector((state: RootState) => state.reducer);
+  const getTheme = useSelector((state: RootState) => state.darkMode);
   const dispatch: Dispatch = useDispatch();
+  const handleTheme = () => {
+    let themeColor = getTheme === "light" ? "dark" : "light";
+    dispatch({ type: `${themeColor}` });
+    console.log("themeColor", themeColor);
+  };
 
   const handleFocusTodo =
     (focusTodo: Todo) => (e: MouseEvent<HTMLButtonElement>) => {
@@ -41,9 +47,18 @@ const FocusMain = () => {
         </Container>
         <BtnContainer margtinTop="98px">
           <Btn onClick={handleFocusTodo(getTodo[0])}>Complete</Btn>
-          <NavLink style={{ textDecoration: 'none' }} to="/">
+          <NavLink style={{ textDecoration: "none" }} to="/">
             <Btn background="#6EA4E4">Todo Mode</Btn>
           </NavLink>
+          {getTheme === "light" ? (
+            <Btn background="#6EA4E4" onClick={handleTheme}>
+              Dark Mode
+            </Btn>
+          ) : (
+            <Btn background="#6EA4E4" onClick={handleTheme}>
+              Light Mode
+            </Btn>
+          )}
         </BtnContainer>
       </FocusLayout>
     </PageTransition>
@@ -55,7 +70,7 @@ export default FocusMain;
 const FocusLayout = styled.div`
   width: 362px;
   height: 600px;
-  background-color: white;
+  background-color: ${(props) => props.theme.mainBackground};
   border-radius: 20px;
 `;
 

@@ -3,4 +3,3 @@ export type Todo = {
   todoText: string;
   checkbox: boolean;
 };
-export type DLMode = () => [string, () => void];

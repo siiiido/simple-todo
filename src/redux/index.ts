@@ -29,3 +29,15 @@ export function reducer(state = initialState, action: any): any {
     return copy;
   } else return state;
 }
+
+const initialDarkModeState = window.localStorage.getItem("theme");
+
+export function darkMode(state = initialDarkModeState, action: any) {
+  if (action.type === "dark") {
+    window.localStorage.setItem("theme", "dark");
+    return "dark";
+  } else if (action.type === "light") {
+    window.localStorage.setItem("theme", "light");
+    return "light";
+  } else return state;
+}
