@@ -35,7 +35,7 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "predeploy": "react-scripts build",
-    "deploy": "gh-pages -d build" 
+    "deploy": "gh-pages -d build"
   },
   "eslintConfig": {
     "extends": [
@@ -55,5 +55,8 @@
       "last 1 safari version"
     ]
   },
-  "homepage": "https://siiiido.github.io/simple-todo/"
+  "homepage": "https://siiiido.github.io/simple-todo/",
+  "devDependencies": {
+    "gh-pages": "^3.2.3"
+  }
 }
