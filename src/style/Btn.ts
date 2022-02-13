@@ -19,16 +19,13 @@ export const Btn = styled.button<Button>`
   font-size: 15px;
   font-weight: 500;
   line-height: 15.23px;
-  -webkit-text-fill-color: black;
-  /* background-color: #E1E1E1; */
-  background-color: rgb(225, 225, 225, .5);
+  background-color: rgb(225, 225, 225, 0.5);
   text-align: center;
   padding: 2px;
 
   &:hover {
     opacity: 100%;
-    background-color: ${(props) => props.background || "#E1E1E1"};
-    color: ${(props) => props.color || "black"};
-    -webkit-text-fill-color:${(props) => props.color || "black"} ;
+    background-color: ${(props) => props.theme.toggleBackground};
+    color: ${(props) => props.theme.toggleText};
   }
 `;

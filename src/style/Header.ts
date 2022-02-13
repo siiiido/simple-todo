@@ -9,4 +9,5 @@ export const Header = styled.h1`
   font-weight: 400;
   line-height: 41px;
   margin-bottom: 20px;
+  color: ${(props) => props.theme.headerTextColor};
 `;

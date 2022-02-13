@@ -1,4 +1,4 @@
-import React, { useState, ChangeEvent, KeyboardEvent, MouseEvent } from "react";
+import { useState, ChangeEvent, KeyboardEvent, MouseEvent } from "react";
 import styled, { css } from "styled-components";
 import { NavLink } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
@@ -106,17 +106,16 @@ const TodoMain = () => {
         </Container>
         <BtnContainer margtinTop="21px">
           <Btn onClick={handleTodoDeleteAll}>Delete Checked</Btn>
-          <NavLink style={{ textDecoration: "none" }} to="/focus">
-            <Btn background="#6EA4E4">Focus Mode</Btn>
+          <NavLink
+            style={{ textDecoration: "none", color: "inherit" }}
+            to="/focus"
+          >
+            <Btn>Focus Mode</Btn>
           </NavLink>
           {getTheme === "light" ? (
-            <Btn background="#6EA4E4" onClick={handleTheme}>
-              Dark Mode
-            </Btn>
+            <Btn onClick={handleTheme}>Dark Mode</Btn>
           ) : (
-            <Btn background="#6EA4E4" onClick={handleTheme}>
-              Light Mode
-            </Btn>
+            <Btn onClick={handleTheme}>Light Mode</Btn>
           )}
         </BtnContainer>
       </Layout>
@@ -142,7 +141,7 @@ const TextField = styled.input`
   font-weight: 400;
   line-height: 17.58px;
   border: none;
-  background-color: #f9f7f1;
+  background-color: ${(props) => props.theme.textBackground};
   padding-left: 7px;
 `;
 
@@ -153,7 +152,7 @@ const PlusBtn = styled.button`
   border: none;
   outline: none;
   appearance: none;
-  background-color: white;
+  background-color: ${(props) => props.theme.emojiBtn};
   -webkit-text-fill-color: black;
   font-size: 40px;
   transform: translate(5%, 40%);
@@ -162,11 +161,13 @@ const PlusBtn = styled.button`
   cursor: pointer;
   &:hover {
     opacity: 100%;
+    color: ${(props) => props.theme.emojiHover};
   }
 `;
 
 const TodoContainer = styled.div`
   padding-left: 23px;
+  color: ${(props) => props.theme.containerText};
 `;
 
 const DeleteBtn = styled.button`
@@ -174,11 +175,12 @@ const DeleteBtn = styled.button`
   border: none;
   outline: none;
   appearance: none;
-  background-color: white;
+  background-color: ${(props) => props.theme.emojiBtn};
   font-size: 17px;
   opacity: 50%;
   &:hover {
     opacity: 100%;
+    color: ${(props) => props.theme.emojiHover};
   }
 `;
 

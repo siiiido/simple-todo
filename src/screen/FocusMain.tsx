@@ -1,4 +1,4 @@
-import React, { MouseEvent } from "react";
+import { MouseEvent } from "react";
 import { NavLink } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "..";
@@ -17,7 +17,6 @@ const FocusMain = () => {
   const handleTheme = () => {
     let themeColor = getTheme === "light" ? "dark" : "light";
     dispatch({ type: `${themeColor}` });
-    console.log("themeColor", themeColor);
   };
 
   const handleFocusTodo =
@@ -47,17 +46,13 @@ const FocusMain = () => {
         </Container>
         <BtnContainer margtinTop="98px">
           <Btn onClick={handleFocusTodo(getTodo[0])}>Complete</Btn>
-          <NavLink style={{ textDecoration: "none" }} to="/">
-            <Btn background="#6EA4E4">Todo Mode</Btn>
+          <NavLink style={{ textDecoration: "none", color: "inherit" }} to="/">
+            <Btn>Todo Mode</Btn>
           </NavLink>
           {getTheme === "light" ? (
-            <Btn background="#6EA4E4" onClick={handleTheme}>
-              Dark Mode
-            </Btn>
+            <Btn onClick={handleTheme}>Dark Mode</Btn>
           ) : (
-            <Btn background="#6EA4E4" onClick={handleTheme}>
-              Light Mode
-            </Btn>
+            <Btn onClick={handleTheme}>Light Mode</Btn>
           )}
         </BtnContainer>
       </FocusLayout>

@@ -18,6 +18,8 @@ declare module "styled-components" {
     containerText: string, // todo list, container 글자 색깔
     toggleBackground: string, // 다크, 라이트 모드 hover 색깔
     toggleText: string, // 다크 모드 글자가 라이트 모드로 바뀌는 것
-    plusBtn?: string, // +버튼 색깔
+    emojiBtn: string, // +버튼, delete 버튼 색깔
+    emojiHover: string
+    
 };
 }
