@@ -1,5 +1,5 @@
-import React from "react";
 import { motion } from "framer-motion";
+import { ReactNode } from "../type";
 
 const pageAnimation = {
   initial: { opacity: 0, y: -100 },
@@ -7,7 +7,7 @@ const pageAnimation = {
   exit: { opacity: 0, y: -100 },
 };
 
-const PageTransition = ({ children }: any) => {
+const PageTransition = ({ children }: ReactNode) => {
   return (
     <motion.div
       variants={pageAnimation}
